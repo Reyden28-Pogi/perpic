@@ -1,0 +1,93 @@
+.certs-hero {
+  padding-top: calc(72px + 4rem);
+  padding-bottom: 3rem;
+}
+.certs-hero__desc {
+  font-size: 1rem;
+  color: var(--color-charcoal);
+  max-width: 500px;
+}
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.cert-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-cream);
+  background: var(--color-white);
+  transition: all 0.3s;
+}
+.cert-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-gold);
+}
+.cert-card__image {
+  height: 200px;
+  overflow: hidden;
+}
+.cert-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cert-card__placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-black) 0%, var(--color-charcoal) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold);
+}
+.cert-card__body {
+  padding: 1.25rem;
+}
+.cert-card__date {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+}
+.cert-card__title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+.cert-card__issuer {
+  font-size: 0.8rem;
+  color: var(--color-charcoal);
+  font-style: italic;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+.cert-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-black);
+  border-bottom: 1px solid var(--color-gold);
+  padding-bottom: 1px;
+  transition: color 0.2s;
+}
+.cert-card__link:hover { color: var(--color-gold); }
+.certs-loading {
+  text-align: center;
+  padding: 4rem;
+  font-family: var(--font-display);
+  color: var(--color-gold);
+}
+@media (max-width: 900px) { .certs-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .certs-grid { grid-template-columns: 1fr; } }
