@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
+import logo from '../assets/perpic-logo.png'
 import './Navbar.css'
 
 const navItems = [
@@ -23,17 +24,13 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
-  useEffect(() => {
-    setOpen(false)
-  }, [location])
+  useEffect(() => { setOpen(false) }, [location])
 
   return (
     <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
       <div className="navbar__inner">
         <NavLink to="/" className="navbar__logo">
-          <span className="navbar__logo-per">Per</span>
-          <span className="navbar__logo-pic">Pic</span>
-          <span className="navbar__logo-tagline">· Make Your Pics Perfect ·</span>
+          <img src={logo} alt="PerPic Logo" className="navbar__logo-img" />
         </NavLink>
 
         <nav className={`navbar__links${open ? ' navbar__links--open' : ''}`}>
@@ -51,11 +48,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <button
-          className="navbar__toggle"
-          onClick={() => setOpen(o => !o)}
-          aria-label="Toggle menu"
-        >
+        <button className="navbar__toggle" onClick={() => setOpen(o => !o)} aria-label="Toggle menu">
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>

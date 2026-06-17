@@ -1,0 +1,90 @@
+.settings-group {
+  background: var(--color-white);
+  border: 1px solid var(--color-cream);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.settings-group__title {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-cream);
+}
+.settings-group__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.settings-field__label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+}
+.settings-field__label svg {
+  color: var(--color-gold);
+  flex-shrink: 0;
+}
+.settings-field__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--color-cream-dark);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--color-black);
+  background: var(--color-white);
+  transition: border-color 0.2s;
+  font-family: var(--font-body);
+}
+.settings-field__input:focus {
+  border-color: var(--color-gold);
+  outline: none;
+}
+.settings-field__input::placeholder {
+  color: rgba(64,64,64,0.35);
+  font-size: 0.85rem;
+}
+.settings-save-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--color-white);
+  border: 1px solid var(--color-cream);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  position: sticky;
+  bottom: 1rem;
+  box-shadow: var(--shadow-md);
+  flex-wrap: wrap;
+}
+.settings-save-bar__note {
+  font-size: 0.82rem;
+  color: var(--color-charcoal);
+}
+.settings-save-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.settings-save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

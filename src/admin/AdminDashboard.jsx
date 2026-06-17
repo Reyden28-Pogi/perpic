@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabase'
-import { LayoutDashboard, Image, Award, MessageSquare, LogOut, Menu, X, Upload } from 'lucide-react'
+import { LayoutDashboard, Image, Award, MessageSquare, Settings, LogOut, Menu, X } from 'lucide-react'
 import AdminPortfolio from './AdminPortfolio'
 import AdminCertificates from './AdminCertificates'
 import AdminMessages from './AdminMessages'
+import AdminSettings from './AdminSettings'
 import './AdminDashboard.css'
 
 const navItems = [
@@ -11,6 +12,7 @@ const navItems = [
   { id: 'portfolio', icon: Image, label: 'Portfolio' },
   { id: 'certificates', icon: Award, label: 'Certificates' },
   { id: 'messages', icon: MessageSquare, label: 'Messages' },
+  { id: 'settings', icon: Settings, label: 'Settings' },
 ]
 
 export default function AdminDashboard({ user, onLogout }) {
@@ -24,7 +26,6 @@ export default function AdminDashboard({ user, onLogout }) {
 
   return (
     <div className="admin-dash">
-      {/* Sidebar */}
       <aside className={`admin-sidebar${sidebarOpen ? ' admin-sidebar--open' : ''}`}>
         <div className="admin-sidebar__logo">
           <span style={{ fontFamily: 'var(--font-body)', fontStyle: 'italic', color: '#fff', fontSize: '1.4rem' }}>Per</span>
@@ -60,76 +61,52 @@ export default function AdminDashboard({ user, onLogout }) {
         </div>
       </aside>
 
-      {/* Mobile toggle */}
-      <button
-        className="admin-mobile-toggle"
-        onClick={() => setSidebarOpen(o => !o)}
-      >
+      <button className="admin-mobile-toggle" onClick={() => setSidebarOpen(o => !o)}>
         {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
       </button>
 
-      {/* Main content */}
       <main className="admin-main">
         <div className="admin-main__header">
           <h1 className="admin-main__title">
             {navItems.find(n => n.id === activeTab)?.label || 'Admin'}
           </h1>
-          <a href="/" target="_blank" className="admin-main__view-site">
-            View Site →
-          </a>
+          <a href="/" target="_blank" className="admin-main__view-site">View Site →</a>
         </div>
-
         <div className="admin-main__content">
-          {activeTab === 'overview' && <AdminOverview />}
-          {activeTab === 'portfolio' && <AdminPortfolio />}
-          {activeTab === 'certificates' && <AdminCertificates />}
-          {activeTab === 'messages' && <AdminMessages />}
+          {activeTab === 'overview'      && <AdminOverview setActiveTab={setActiveTab} />}
+          {activeTab === 'portfolio'     && <AdminPortfolio />}
+          {activeTab === 'certificates'  && <AdminCertificates />}
+          {activeTab === 'messages'      && <AdminMessages />}
+          {activeTab === 'settings'      && <AdminSettings />}
         </div>
       </main>
 
-      {sidebarOpen && (
-        <div className="admin-overlay" onClick={() => setSidebarOpen(false)} />
-      )}
+      {sidebarOpen && <div className="admin-overlay" onClick={() => setSidebarOpen(false)} />}
     </div>
   )
 }
 
-function AdminOverview() {
+function AdminOverview({ setActiveTab }) {
+  const cards = [
+    { id: 'portfolio',    icon: '🖼️', label: 'Portfolio',     desc: 'Add or edit portfolio items' },
+    { id: 'certificates', icon: '🏆', label: 'Certificates',  desc: 'Manage credentials & awards' },
+    { id: 'messages',     icon: '✉️', label: 'Messages',      desc: 'Read contact form submissions' },
+    { id: 'settings',     icon: '⚙️', label: 'Settings',      desc: 'Update links, socials & info' },
+  ]
   return (
     <div className="admin-overview">
-      <div className="admin-stats">
-        {[
-          { label: 'Portfolio Items', value: '—', hint: 'Manage in Portfolio tab' },
-          { label: 'Certificates', value: '—', hint: 'Manage in Certificates tab' },
-          { label: 'Messages', value: '—', hint: 'View in Messages tab' },
-        ].map(s => (
-          <div key={s.label} className="admin-stat">
-            <div className="admin-stat__value">{s.value}</div>
-            <div className="admin-stat__label">{s.label}</div>
-            <div className="admin-stat__hint">{s.hint}</div>
-          </div>
+      <p className="admin-overview__welcome">Welcome back! What would you like to manage today?</p>
+      <div className="admin-overview__cards">
+        {cards.map(c => (
+          <button key={c.id} className="admin-overview__card" onClick={() => setActiveTab(c.id)}>
+            <span className="admin-overview__card-icon">{c.icon}</span>
+            <span className="admin-overview__card-label">{c.label}</span>
+            <span className="admin-overview__card-desc">{c.desc}</span>
+          </button>
         ))}
       </div>
-
-      <div className="admin-overview__intro">
-        <h2>Welcome to PerPic Admin</h2>
-        <p>Use the sidebar to manage your portfolio content:</p>
-        <ul>
-          <li><strong>Portfolio</strong> — Add, edit, and delete portfolio items with images uploaded to Supabase Storage</li>
-          <li><strong>Certificates</strong> — Manage certifications and awards displayed on your portfolio</li>
-          <li><strong>Messages</strong> — View contact form submissions from visitors</li>
-        </ul>
-        <div className="admin-overview__setup">
-          <h3>⚙️ Setup Required</h3>
-          <p>Make sure to:</p>
-          <ol>
-            <li>Add your Supabase credentials to <code>.env</code></li>
-            <li>Run the SQL migrations in your Supabase SQL Editor (see <code>src/lib/supabase.js</code>)</li>
-            <li>Create a Storage bucket named <code>portfolio-assets</code> (set to public)</li>
-            <li>Enable Email authentication and create an admin user in Supabase Auth</li>
-            <li>Update Calendly URL and Zoom link in <code>src/pages/Contact.jsx</code></li>
-          </ol>
-        </div>
+      <div className="admin-overview__tip">
+        <strong>💡 Tip:</strong> Go to <strong>Settings</strong> to update your social media links, Calendly URL, Zoom link, and contact info. Changes appear on the website immediately after saving.
       </div>
     </div>
   )
