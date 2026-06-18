@@ -4,16 +4,6 @@ import './Portfolio.css'
 
 const categories = ['All', 'Photography', 'Graphic Design', 'Web Development', 'Photo Editing']
 
-// Demo items shown when Supabase is not yet connected
-const demoItems = [
-  { id: 1, title: 'Portrait Photography', category: 'Photography', description: 'Professional portrait session showcasing natural lighting techniques.', image_url: null, tags: ['portrait', 'studio'] },
-  { id: 2, title: 'PerPic Brand Identity', category: 'Graphic Design', description: 'Complete brand identity design including logo, color palette, and typography.', image_url: null, tags: ['branding', 'logo'] },
-  { id: 3, title: 'Event Documentation', category: 'Photography', description: 'Comprehensive event coverage with high-quality candid and posed shots.', image_url: null, tags: ['event', 'documentation'] },
-  { id: 4, title: 'Photo Restoration', category: 'Photo Editing', description: 'Meticulous restoration of old damaged photographs.', image_url: null, tags: ['restoration', 'editing'] },
-  { id: 5, title: 'Web Portal Development', category: 'Web Development', description: 'PHP-based web portal with MySQL database and responsive UI.', image_url: null, tags: ['php', 'mysql'] },
-  { id: 6, title: 'Social Media Graphics', category: 'Graphic Design', description: 'Cohesive social media graphic set designed in Canva.', image_url: null, tags: ['social media', 'canva'] },
-]
-
 function PortfolioCard({ item }) {
   return (
     <div className="portfolio-card">
@@ -22,7 +12,7 @@ function PortfolioCard({ item }) {
           <img src={item.image_url} alt={item.title} />
         ) : (
           <div className="portfolio-card__placeholder">
-            <span>{item.category.charAt(0)}</span>
+            <span>{item.category?.charAt(0) || 'P'}</span>
           </div>
         )}
         <div className="portfolio-card__overlay">
@@ -43,19 +33,18 @@ function PortfolioCard({ item }) {
 }
 
 export default function Portfolio() {
-  const [items, setItems] = useState(demoItems)
+  const [items, setItems] = useState([])
   const [activeCategory, setActiveCategory] = useState('All')
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function fetchItems() {
       setLoading(true)
-      try {
-        const { data, error } = await supabase.from('portfolio_items').select('*').order('created_at', { ascending: false })
-        if (!error && data && data.length > 0) setItems(data)
-      } catch {
-        // Use demo items if Supabase not connected
-      }
+      const { data, error } = await supabase
+        .from('portfolio_items')
+        .select('*')
+        .order('created_at', { ascending: false })
+      if (!error && data) setItems(data)
       setLoading(false)
     }
     fetchItems()
@@ -94,6 +83,12 @@ export default function Portfolio() {
 
           {loading ? (
             <div className="portfolio-loading">Loading portfolio…</div>
+          ) : filtered.length === 0 ? (
+            <div className="portfolio-empty">
+              <div className="portfolio-empty__icon">🖼️</div>
+              <h3>No items yet</h3>
+              <p>Portfolio items added from the admin panel will appear here.</p>
+            </div>
           ) : (
             <div className="portfolio-grid">
               {filtered.map(item => (

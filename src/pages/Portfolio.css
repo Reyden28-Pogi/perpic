@@ -132,3 +132,22 @@
 }
 @media (max-width: 900px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .portfolio-grid { grid-template-columns: 1fr; } }
+
+.portfolio-empty {
+  text-align: center;
+  padding: 5rem 2rem;
+  color: var(--color-charcoal);
+}
+.portfolio-empty__icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.portfolio-empty h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.portfolio-empty p {
+  font-size: 0.9rem;
+  color: rgba(64,64,64,0.6);
+}
