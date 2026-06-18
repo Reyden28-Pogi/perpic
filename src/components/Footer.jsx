@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Mail, Phone, MapPin } from 'lucide-react'
 import { supabase } from '../lib/supabase'
-import logo from '../assets/perpic-logo.png'
+import logo from '../assets/perpic-logo.jpg'
 import './Footer.css'
 
 const SocialIcons = {

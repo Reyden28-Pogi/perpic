@@ -62,101 +62,7 @@
   flex-wrap: wrap;
 }
 
-/* Camera illustration */
-.hero__visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hero__camera-frame {
-  text-align: center;
-}
-.hero__camera-body {
-  width: 260px;
-  height: 200px;
-  background: var(--color-black);
-  border-radius: 20px;
-  position: relative;
-  margin: 0 auto;
-  box-shadow: var(--shadow-lg);
-}
-.hero__camera-body::before {
-  content: '';
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 24px;
-  background: var(--color-black);
-  border-radius: 8px 8px 0 0;
-}
-.hero__camera-lens {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  background: var(--color-charcoal);
-  border: 6px solid var(--color-gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hero__lens-inner {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: #1a1a2e;
-  border: 3px solid rgba(160,136,98,0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.hero__lens-scene {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    180deg,
-    #87ceeb 0%,
-    #87ceeb 40%,
-    #c2956c 40%,
-    #8b6914 60%,
-    #5a4020 60%,
-    #3d2b0f 100%
-  );
-  border-radius: 50%;
-}
-.hero__camera-flash {
-  position: absolute;
-  top: 16px;
-  right: 24px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--color-gold);
-  box-shadow: 0 0 10px var(--color-gold);
-}
-.hero__camera-button {
-  position: absolute;
-  top: -12px;
-  left: 30px;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--color-gold);
-}
-.hero__brand-text {
-  margin-top: 1.25rem;
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 2rem;
-}
-.hero__brand-per { color: var(--color-black); }
-.hero__brand-pic { color: var(--color-gold); }
+
 
 .hero__scroll {
   position: absolute;
@@ -305,3 +211,116 @@
 @media (max-width: 480px) {
   .services-preview__grid { grid-template-columns: 1fr; }
 }
+
+/* ============================
+   Camera Illustration (Image 2 style — black solid body)
+   ============================ */
+.hero__cam-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.18));
+}
+
+/* Main body */
+.hero__cam-body {
+  width: 280px;
+  height: 210px;
+  background: #111111;
+  border-radius: 22px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Top bump (viewfinder hump) */
+.hero__cam-bump {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 26px;
+  background: #111111;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Left gold dot */
+.hero__cam-dot--left {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  opacity: 0.9;
+}
+
+/* Right gold dot */
+.hero__cam-dot--right {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  opacity: 0.7;
+}
+
+/* Lens — outer gold ring */
+.hero__cam-lens-outer {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px rgba(160,136,98,0.25);
+}
+
+/* Lens — dark charcoal mid ring */
+.hero__cam-lens-mid {
+  width: 124px;
+  height: 124px;
+  border-radius: 50%;
+  background: #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Lens — inner scene circle */
+.hero__cam-lens-inner {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sky portion */
+.hero__cam-sky {
+  flex: 1;
+  background: #87ceeb;
+}
+
+/* Ground portion */
+.hero__cam-ground {
+  flex: 1;
+  background: var(--color-gold);
+}
+
+/* Brand text under camera */
+.hero__cam-brand {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 2rem;
+}
+.hero__brand-per { color: var(--color-black); }
+.hero__brand-pic { color: var(--color-gold); }

@@ -52,17 +52,27 @@ export default function Home() {
             </div>
           </div>
           <div className="hero__visual">
-            <div className="hero__camera-frame">
-              <div className="hero__camera-body">
-                <div className="hero__camera-lens">
-                  <div className="hero__lens-inner">
-                    <div className="hero__lens-scene" />
+            <div className="hero__cam-wrap">
+              {/* Camera body - black solid */}
+              <div className="hero__cam-body">
+                {/* Top bump/viewfinder */}
+                <div className="hero__cam-bump" />
+                {/* Left dot */}
+                <div className="hero__cam-dot hero__cam-dot--left" />
+                {/* Right dot */}
+                <div className="hero__cam-dot hero__cam-dot--right" />
+                {/* Lens - gold outer ring, dark inner, sky+ground scene */}
+                <div className="hero__cam-lens-outer">
+                  <div className="hero__cam-lens-mid">
+                    <div className="hero__cam-lens-inner">
+                      <div className="hero__cam-sky" />
+                      <div className="hero__cam-ground" />
+                    </div>
                   </div>
                 </div>
-                <div className="hero__camera-flash" />
-                <div className="hero__camera-button" />
               </div>
-              <div className="hero__brand-text">
+              {/* Brand name below camera */}
+              <div className="hero__cam-brand">
                 <span className="hero__brand-per">Per</span><span className="hero__brand-pic">Pic</span>
               </div>
             </div>

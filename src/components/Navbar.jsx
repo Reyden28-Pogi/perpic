@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
-import logo from '../assets/perpic-logo.png'
+import logo from '../assets/perpic-logo.jpg'
 import './Navbar.css'
 
 const navItems = [
