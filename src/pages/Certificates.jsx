@@ -49,13 +49,16 @@ export default function Certificates() {
               {certs.map(cert => (
                 <div key={cert.id} className="cert-card">
                   <div className="cert-card__image">
-                    {cert.image_url ? (
-                      <img src={cert.image_url} alt={cert.title} />
-                    ) : (
-                      <div className="cert-card__placeholder">
-                        <Award size={40} strokeWidth={1.5} />
-                      </div>
-                    )}
+                    {cert.image_url && cert.image_url.trim() !== '' ? (
+                      <img
+                        src={cert.image_url}
+                        alt={cert.title}
+                        onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+                      />
+                    ) : null}
+                    <div className="cert-card__placeholder" style={{ display: cert.image_url && cert.image_url.trim() !== '' ? 'none' : 'flex' }}>
+                      <Award size={40} strokeWidth={1.5} />
+                    </div>
                   </div>
                   <div className="cert-card__body">
                     <div className="cert-card__date">{cert.date}</div>

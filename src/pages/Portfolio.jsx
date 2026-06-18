@@ -8,13 +8,16 @@ function PortfolioCard({ item }) {
   return (
     <div className="portfolio-card">
       <div className="portfolio-card__image">
-        {item.image_url ? (
-          <img src={item.image_url} alt={item.title} />
-        ) : (
-          <div className="portfolio-card__placeholder">
-            <span>{item.category?.charAt(0) || 'P'}</span>
-          </div>
-        )}
+        {item.image_url && item.image_url.trim() !== '' ? (
+          <img
+            src={item.image_url}
+            alt={item.title}
+            onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+          />
+        ) : null}
+        <div className="portfolio-card__placeholder" style={{ display: item.image_url && item.image_url.trim() !== '' ? 'none' : 'flex' }}>
+          <span>{item.category?.charAt(0) || 'P'}</span>
+        </div>
         <div className="portfolio-card__overlay">
           <span className="portfolio-card__cat">{item.category}</span>
         </div>

@@ -134,9 +134,11 @@
 }
 
 .footer__logo-img {
-  height: 56px;
+  height: 70px;
   width: auto;
   object-fit: contain;
   margin-bottom: 1rem;
-  filter: brightness(0) invert(1);
+  background: var(--color-white);
+  border-radius: 8px;
+  padding: 4px 8px;
 }
